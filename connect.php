@@ -4,6 +4,15 @@ $user = "root";
 $password = "";
 $database = "guestbook";
 
-$link = mysqli_connect($host, $user, $password, $database) 
-	or die("Ошибка " . mysqli_error($link));
+$dsn = "mysql:host=$host;dbname=$database;";
+
+$opt = 
+	[
+	    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+	    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+	    PDO::ATTR_EMULATE_PREPARES   => false,
+    ];
+
+$DBH = new PDO($dsn, $user, $password, $opt);
+
 ?>
